@@ -2,18 +2,16 @@
 
 ## usersテーブル
 
-| Column          | Type     | Options               |
-|-----------------|----------|-----------------------|
-| nickname        | string   | NOT NULL,unique: true |       
-| email           | string   | NOT NULL,unique: true |
-| password        | string   | NOT NULL              |
-| last_name       | string   | NOT NULL              | 
-| first_name      | string   | NOT NULL              |
-| last_name_kana  | string   | NOT NULL              |
-| first_name_kana | string   | NOT NULL              |
-| birth_year_id   | integer  | NOT NULL              |
-| birth_month_id  | integer  | NOT NULL              |
-| birth_date_id   | integer  | NOT NULL              |
+| Column             | Type     | Options                  |
+|--------------------|----------|--------------------------|
+| nickname           | string   | null: false,unique: true |       
+| email              | string   | null: false,unique: true |
+| encrypted_password | string   | null: false              |
+| last_name          | string   | null: false              | 
+| first_name         | string   | null: false              |
+| last_name_kana     | string   | null: false              |
+| first_name_kana    | string   | null: false              |
+| birth_id           | integer  | null: false              |
 
 ### association
 
@@ -25,16 +23,16 @@ has_many :orders
 
 | Column             | Type      | Options           |
 |--------------------|-----------|-------------------|
-| name               | string    | NOT NULL          |
-| text               | text      | NOT NULL          |
-| category_id        | integer   | NOT NULL          |
-| status_id          | integer   | NOT NULL          |
-| delivery_charge_id | integer   | NOT NULL          |
-| prefecture_id      | integer   | NOT NULL          |
-| delivery_days_id   | integer   | NOT NULL          |
-| price              | integer   | NOT NULL          |
+| name               | string    | null: false       |
+| text               | text      | null: false       |
+| category_id        | integer   | null: false       |
+| status_id          | integer   | null: false       |
+| delivery_charge_id | integer   | null: false       |
+| prefecture_id      | integer   | null: false       |
+| delivery_days_id   | integer   | null: false       |
+| price              | integer   | null: false       |
 | image              | ActiveStrageで実装             |
-| user_id            | references| foreign-key: true |
+| user               | references| foreign_key: true |
 
 ### association
 
@@ -46,14 +44,14 @@ has_one :order
 
 | Column             | Type      | Options           |
 |--------------------|-----------|-------------------|
-| postal_code        | string    | NOT NULL          |
-| prefecture_id      | integer   | NOT NULL          |
-| city               | string    | NOT NULL          |
-| house_number       | string    | NOT NULL          |
-| building_name      | string    | NOT NULL          |
-| phone_number       | string    | NOT NULL          |
-| item_id            | references| foreign-key: true |
-| user_id            | references| foreign-key: true |
+| postal_code        | string    | null: false       |
+| prefecture_id      | integer   | null: false       |
+| city               | string    | null: false       |
+| house_number       | string    | null: false       |
+| building_name      | string    |                   |
+| phone_number       | string    | null: false       |
+| item               | references| foreign_key: true |
+| user               | references| foreign_key: true |
 
 
 ### association
