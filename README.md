@@ -16,7 +16,7 @@
 ### association
 
 has_many :items
-has_many :orders
+has_many :purchases
 
 
 ## itemsテーブル
@@ -31,13 +31,15 @@ has_many :orders
 | prefecture_id      | integer   | null: false       |
 | delivery_days_id   | integer   | null: false       |
 | price              | integer   | null: false       |
-| image              | ActiveStrageで実装             |
 | user               | references| foreign_key: true |
+
+:image ActiveStrageで実装
 
 ### association
 
 belongs_to :user
 has_one :order
+has_one :purchase
 
 
 ## ordersテーブル
@@ -51,13 +53,22 @@ has_one :order
 | building_name      | string    |                   |
 | phone_number       | string    | null: false       |
 | item               | references| foreign_key: true |
-| user               | references| foreign_key: true |
 
 
 ### association
-belongs_to :user
 belongs_to :item
 
 
 ## credit_card
 payjpで実装
+
+
+## purchases テーブル
+| Column             | Type      | Options           |
+|--------------------|-----------|-------------------|
+| item               | references| foreign_key: true |
+| user               | references| foreign_key: true |
+
+### association
+belongs_to :user
+belongs_to :item
