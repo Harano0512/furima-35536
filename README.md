@@ -38,7 +38,6 @@ has_many :purchases
 ### association
 
 belongs_to :user
-has_one :order
 has_one :purchase
 
 
@@ -52,11 +51,10 @@ has_one :purchase
 | house_number       | string    | null: false       |
 | building_name      | string    |                   |
 | phone_number       | string    | null: false       |
-| item               | references| foreign_key: true |
 
 
 ### association
-belongs_to :item
+has_one :purchase
 
 
 ## credit_card
@@ -68,7 +66,9 @@ payjpで実装
 |--------------------|-----------|-------------------|
 | item               | references| foreign_key: true |
 | user               | references| foreign_key: true |
+| order              | references| foreign_key: true |
 
 ### association
 belongs_to :user
 belongs_to :item
+belongs_to :order
