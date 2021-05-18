@@ -23,18 +23,18 @@ has_many :orders
 
 ## itemsテーブル
 
-| Column             | Type      | Options                    |
-|--------------------|-----------|----------------------------|
-| name               | string    | NOT NULL                   |
-| text               | text      | NOT NULL                   |
-| category_id        | integer   | NOT NULL                   |
-| status_id          | integer   | NOT NULL                   |
-| delivery_charge_id | integer   | NOT NULL                   |
-| prefecture_id      | integer   | NOT NULL                   |
-| delivery_days_id   | integer   | NOT NULL                   |
-| price              | integer   | NOT NULL                   |
-| image              | ActiveStrageで実装                      |
-| user_id            | references| NOT NULL,foreign-key: true |
+| Column             | Type      | Options           |
+|--------------------|-----------|-------------------|
+| name               | string    | NOT NULL          |
+| text               | text      | NOT NULL          |
+| category_id        | integer   | NOT NULL          |
+| status_id          | integer   | NOT NULL          |
+| delivery_charge_id | integer   | NOT NULL          |
+| prefecture_id      | integer   | NOT NULL          |
+| delivery_days_id   | integer   | NOT NULL          |
+| price              | integer   | NOT NULL          |
+| image              | ActiveStrageで実装             |
+| user_id            | references| foreign-key: true |
 
 ### association
 
@@ -44,20 +44,21 @@ has_one :order
 
 ## ordersテーブル
 
-| Column             | Type      | Options                    |
-|--------------------|-----------|----------------------------|
-| postal_code        | string    | NOT NULL                   |
-| prefecture_id      | integer   | NOT NULL                   |
-| city               | string    | NOT NULL                   |
-| house_number       | string    | NOT NULL                   |
-| building_name      | string    | NOT NULL                   |
-| phone_number       | string    | NOT NULL                   |
-| item_id            | references| NOT NULL,foreign-key: true |
-| user_id            | references| NOT NULL,foreign-key: true |
+| Column             | Type      | Options           |
+|--------------------|-----------|-------------------|
+| postal_code        | string    | NOT NULL          |
+| prefecture_id      | integer   | NOT NULL          |
+| city               | string    | NOT NULL          |
+| house_number       | string    | NOT NULL          |
+| building_name      | string    | NOT NULL          |
+| phone_number       | string    | NOT NULL          |
+| item_id            | references| foreign-key: true |
+| user_id            | references| foreign-key: true |
 
 
 ### association
 belongs_to :user
+belongs_to :item
 
 
 ## credit_card
