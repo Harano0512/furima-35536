@@ -18,38 +18,47 @@
 ### association
 
 has_many :items
+has_many :orders
 
 
 ## itemsテーブル
 
-| Column             | Type      | Options               |
-|--------------------|-----------|-----------------------|
-| name               | string    | NOT NULL              |
-| text               | text      | NOT NULL              |
-| category_id        | integer   | NOT NULL              |
-| status_id          | integer   | NOT NULL              |
-| delivery_charge_id | integer   | NOT NULL              |
-| prefecture_id      | integer   | NOT NULL              |
-| delivery_days_id   | integer   | NOT NULL              |
-| price              | integer   | NOT NULL              |
-| image              | ActiveStrageで実装                 |
-| user_id            | references| NOT NULL              |
+| Column             | Type      | Options                    |
+|--------------------|-----------|----------------------------|
+| name               | string    | NOT NULL                   |
+| text               | text      | NOT NULL                   |
+| category_id        | integer   | NOT NULL                   |
+| status_id          | integer   | NOT NULL                   |
+| delivery_charge_id | integer   | NOT NULL                   |
+| prefecture_id      | integer   | NOT NULL                   |
+| delivery_days_id   | integer   | NOT NULL                   |
+| price              | integer   | NOT NULL                   |
+| image              | ActiveStrageで実装                      |
+| user_id            | references| NOT NULL,foreign-key: true |
 
 ### association
 
 belongs_to :user
-has_one :purchase
+has_one :order
 
 
 ## ordersテーブル
 
-| Column             | Type      | Options               |
-|--------------------|-----------|-----------------------|
-| postal_code        | string    | NOT NULL              |
-| prefecture_id      | integer   | NOT NULL              |
-| city               | string    | NOT NULL              |
-| house_number       | string    | NOT NULL              |
-| building_name      | string    | NOT NULL              |
-| phone_number       | string    | NOT NULL              |
-| credit_card        | payjp.jsで実装                     |
-| items_id           | references| NOT NULL              |
+| Column             | Type      | Options                    |
+|--------------------|-----------|----------------------------|
+| postal_code        | string    | NOT NULL                   |
+| prefecture_id      | integer   | NOT NULL                   |
+| city               | string    | NOT NULL                   |
+| house_number       | string    | NOT NULL                   |
+| building_name      | string    | NOT NULL                   |
+| phone_number       | string    | NOT NULL                   |
+| item_id            | references| NOT NULL,foreign-key: true |
+| user_id            | references| NOT NULL,foreign-key: true |
+
+
+### association
+belongs_to :user
+
+
+## credit_card
+payjpで実装
