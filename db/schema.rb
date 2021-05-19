@@ -13,13 +13,13 @@
 ActiveRecord::Schema.define(version: 2021_05_19_061032) do
 
   create_table "items", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "name", null: false
+    t.string "item_name", null: false
     t.text "text", null: false
     t.integer "category_id", null: false
     t.integer "status_id", null: false
     t.integer "delivery_charge_id", null: false
     t.integer "prefecture_id", null: false
-    t.integer "delivery_days_id", null: false
+    t.integer "delivery_day_id", null: false
     t.integer "price", null: false
     t.bigint "user_id"
     t.datetime "created_at", precision: 6, null: false
