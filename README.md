@@ -23,13 +23,13 @@ has_many :purchases
 
 | Column             | Type      | Options           |
 |--------------------|-----------|-------------------|
-| name               | string    | null: false       |
+| item_name          | string    | null: false       |
 | text               | text      | null: false       |
 | category_id        | integer   | null: false       |
 | status_id          | integer   | null: false       |
 | delivery_charge_id | integer   | null: false       |
 | prefecture_id      | integer   | null: false       |
-| delivery_days_id   | integer   | null: false       |
+| delivery_day_id    | integer   | null: false       |
 | price              | integer   | null: false       |
 | user               | references| foreign_key: true |
 
