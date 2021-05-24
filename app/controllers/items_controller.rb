@@ -4,7 +4,7 @@ class ItemsController < ApplicationController
   before_action :check_user, only: [:destroy, :edit, :update]
 
   def index
-    @items = Item.order(created_at: "DESC")
+    @items = Item.order(created_at: 'DESC')
   end
 
   def new
@@ -40,7 +40,6 @@ class ItemsController < ApplicationController
     end
   end
 
-
   private
 
   def item_params
@@ -55,5 +54,4 @@ class ItemsController < ApplicationController
   def check_user
     redirect_to root_path unless current_user.id == @item.user_id
   end
-
 end
