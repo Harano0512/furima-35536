@@ -1,5 +1,6 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, except: [:show, :index]
+  before_action :set_item, only: [:show, :destroy, :check_user]
   before_action :check_user, only: :destroy
 
   def index
@@ -20,18 +21,15 @@ class ItemsController < ApplicationController
   end
 
   def show
-    @item = Item.find(params[:id])
   end
 
   def destroy
-    item = Item.find(params[:id])
-    item.destroy
+    @item.destroy
     redirect_to root_path
   end
 
   def check_user
-    item = Item.find(params[:id])
-    redirect_to root_path unless current_user.id == item.user_id
+    redirect_to root_path unless current_user.id == @item.user_id
   end
 
   private
@@ -39,5 +37,9 @@ class ItemsController < ApplicationController
   def item_params
     params.require(:item).permit(:item_name, :text, :price, :category_id, :status_id, :delivery_charge_id, :prefecture_id,
                                  :delivery_day_id, :image).merge(user_id: current_user.id)
+  end
+
+  def set_item
+    @item = Item.find(params[:id])
   end
 end
