@@ -3,7 +3,7 @@ class ItemsController < ApplicationController
   before_action :check_user, only: :destroy
 
   def index
-    @items = Item.all
+    @items = Item.order(created_at: "DESC")
   end
 
   def new
