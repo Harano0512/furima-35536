@@ -16,7 +16,7 @@
 ### association
 
 has_many :items
-has_many :purchases
+has_many :orders
 
 
 ## itemsテーブル
@@ -38,10 +38,10 @@ has_many :purchases
 ### association
 
 belongs_to :user
-has_one :purchase
+has_one :order
 
 
-## ordersテーブル
+## addressテーブル
 
 | Column             | Type      | Options           |
 |--------------------|-----------|-------------------|
@@ -51,18 +51,15 @@ has_one :purchase
 | house_number       | string    | null: false       |
 | building_name      | string    |                   |
 | phone_number       | string    | null: false       |
-| purchase           | references| foreign_key: true |
+| order              | references| foreign_key: true |
 
 
 ### association
-belongs_to :purchase
+belongs_to :order
 
 
-## credit_card
-payjpで実装
 
-
-## purchases テーブル
+## orders テーブル
 | Column             | Type      | Options           |
 |--------------------|-----------|-------------------|
 | item               | references| foreign_key: true |
@@ -71,4 +68,8 @@ payjpで実装
 ### association
 belongs_to :user
 belongs_to :item
-has_one :order
+has_one :address
+
+
+### credit_card
+payjpで実装
