@@ -3,7 +3,11 @@ require 'rails_helper'
 RSpec.describe OrderAddress, type: :model do
   describe '商品購入機能' do
     before do
-      @order_address = FactoryBot.build(:order_address)
+      user = FactoryBot.create(:user)
+      another_user = FactoryBot.create(:user)
+      item = FactoryBot.create(:item, user_id: another_user.id)
+      @order_address = FactoryBot.build(:order_address, user_id: user.id, item_id: item.id)
+      sleep 0.1
     end
 
     context '内容に問題がない場合' do
@@ -38,12 +42,12 @@ RSpec.describe OrderAddress, type: :model do
         expect(@order_address.errors.full_messages).to include("Postal code is in valid.Include hyphen(-)")
       end
       it '都道府県が空では登録できない' do
-        @order_address.prefecture_id = ""
+        @order_address.prefecture_id = nil
         @order_address.valid?
         expect(@order_address.errors.full_messages).to include("Prefecture can't be blank")
       end
       it '都道府県を選択していなければ登録できない' do
-        @order_address.prefecture_id = "1"
+        @order_address.prefecture_id = 1
         @order_address.valid?
         expect(@order_address.errors.full_messages).to include("Prefecture must be other than 1")
       end
@@ -74,6 +78,11 @@ RSpec.describe OrderAddress, type: :model do
       end
       it '電話番号に文字は登録できない' do
         @order_address.phone_number = "ｱｲｳｴｵｶｷｸｹｺ"
+        @order_address.valid?
+        expect(@order_address.errors.full_messages).to include("Phone number is in valid.")
+      end
+      it '電話番号は半角英数混合だと登録できない' do
+        @order_address.phone_number = "ｱｲｳｴｵ12345"
         @order_address.valid?
         expect(@order_address.errors.full_messages).to include("Phone number is in valid.")
       end
