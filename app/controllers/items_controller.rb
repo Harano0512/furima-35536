@@ -23,6 +23,11 @@ class ItemsController < ApplicationController
   end
 
   def show
+    @orders.each do |order|
+      if order.item_id == @item.id
+        @order = Order.find_by item_id: @item.id
+      end
+    end
   end
 
   def destroy

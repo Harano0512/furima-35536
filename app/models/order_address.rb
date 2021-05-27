@@ -12,7 +12,6 @@ class OrderAddress
     validates :house_number
     validates :phone_number,format: {with:/\A\d{10,11}\z/,message:"is in valid."}
     validates :token
-    validates :order_id
     validates :item_id
     validates :user_id
   end

@@ -77,11 +77,6 @@ RSpec.describe OrderAddress, type: :model do
         @order_address.valid?
         expect(@order_address.errors.full_messages).to include("Phone number is in valid.")
       end
-      it 'order_idがないと登録できない' do
-        @order_address.order_id = ""
-        @order_address.valid?
-        expect(@order_address.errors.full_messages).to include("Order can't be blank")
-      end
       it 'user_idがないと登録できない' do
         @order_address.user_id = ""
         @order_address.valid?
