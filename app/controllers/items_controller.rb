@@ -23,9 +23,6 @@ class ItemsController < ApplicationController
   end
 
   def show
-    @orders.each do |order|
-      @order = Order.find_by item_id: @item.id if order.item_id == @item.id
-    end
   end
 
   def destroy
@@ -65,11 +62,8 @@ class ItemsController < ApplicationController
   end
 
   def check_order
-    @orders.each do |_order|
-      if @item.order.present?
-        redirect_to root_path
-        return
-      end
+    if @item.order.present?
+      redirect_to root_path
     end
   end
 end

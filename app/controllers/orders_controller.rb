@@ -46,12 +46,8 @@ class OrdersController < ApplicationController
   end
 
   def check_order
-    @orders = Order.all
-    @orders.each do |_order|
-      if @item.order.present?
-        redirect_to root_path
-        return
-      end
+    if @item.order.present?
+      redirect_to root_path
     end
   end
 end
