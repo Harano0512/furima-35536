@@ -9,10 +9,12 @@ class OrdersController < ApplicationController
 
   def create
     @order_address = OrderAddress.new(order_params)
-    if @order_address.valid?
+    if order_params[:token] == "undefined"
+      render :index
+    elsif @order_address.valid?
       pay_item
       @order_address.save
-      return redirect_to item_path(@item[:id])
+      redirect_to item_path(@item[:id])
     else
       render :index
     end
