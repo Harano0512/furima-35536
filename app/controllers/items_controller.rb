@@ -24,9 +24,7 @@ class ItemsController < ApplicationController
 
   def show
     @orders.each do |order|
-      if order.item_id == @item.id
-        @order = Order.find_by item_id: @item.id
-      end
+      @order = Order.find_by item_id: @item.id if order.item_id == @item.id
     end
   end
 
@@ -61,14 +59,14 @@ class ItemsController < ApplicationController
   def set_item
     @item = Item.find(params[:id])
   end
-  
+
   def check_user
     redirect_to root_path unless current_user.id == @item.user_id
   end
 
   def check_order
-    @orders.each do |order|
-      if order.item_id == @item.id
+    @orders.each do |_order|
+      if @item.order.present?
         redirect_to root_path
         return
       end
