@@ -2,6 +2,7 @@ class OrdersController < ApplicationController
   before_action :set_item 
   before_action :authenticate_user!
   before_action :check_user, only: [:index]
+  before_action :check_order, only: [:index]
 
   def index
     @order_address = OrderAddress.new
@@ -42,6 +43,16 @@ class OrdersController < ApplicationController
       card: order_params[:token],
       currency: 'jpy'
     )
+  end
+
+  def check_order
+    @orders = Order.all
+    @orders.each do |order|
+      if order.item_id == @item.id
+        redirect_to root_path
+        return
+      end
+    end
   end
 
 end
