@@ -163,7 +163,8 @@ GEM
     pry-rails (0.3.9)
       pry (>= 0.10.4)
     public_suffix (4.0.6)
-    puma (3.12.6)
+    puma (4.3.8)
+      nio4r (~> 2.0)
     racc (1.5.2)
     rack (2.2.3)
     rack-proxy (0.6.5)
@@ -322,7 +323,7 @@ DEPENDENCIES
   mysql2 (>= 0.4.4)
   payjp
   pry-rails
-  puma (~> 3.11)
+  puma (>= 4.3.8)
   rails (~> 6.0.0)
   rspec-rails
   rubocop
@@ -340,4 +341,4 @@ RUBY VERSION
    ruby 2.6.5p114
 
 BUNDLED WITH
-   2.1.4
+   2.2.16
